@@ -11,12 +11,15 @@
 	},
 	"dependencies": {
 		"@prisma/client": "^5.14.0",
+		"cookie-signature": "^1.2.1",
+		"iron-session": "^8.0.1",
 		"next": "15.0.0-rc.0",
 		"react": "19.0.0-rc-f994737d14-20240522",
 		"react-dom": "19.0.0-rc-f994737d14-20240522"
 	},
 	"devDependencies": {
 		"@tailwindcss/forms": "^0.5.7",
+		"@types/cookie-signature": "^1.1.2",
 		"@types/node": "^20",
 		"@types/react": "^18",
 		"@types/react-dom": "^18",
