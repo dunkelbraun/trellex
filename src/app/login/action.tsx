@@ -32,5 +32,5 @@ export async function login(
 		};
 	}
 	await setSession(userId);
-	return redirect("/");
+	return redirect("/home");
 }
