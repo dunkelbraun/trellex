@@ -3,7 +3,6 @@ import localFont from "next/font/local";
 import Image from "next/image.js";
 import Link from "next/link.js";
 import "./globals.css";
-import { LoginIcon, LogoutIcon } from "./icons/icons";
 
 const geistSans = localFont({
 	src: "./fonts/GeistVF.woff",
@@ -45,20 +44,14 @@ export default function RootLayout({
 							{userId ? (
 								<form method="post" action="/logout">
 									<button className="block text-center">
-										<LogoutIcon />
 										<br />
-										<span className="text-slate-500 text-xs uppercase font-bold">
-											Log out
-										</span>
+										<span className="text-slate-500 text-xs uppercase font-bold">Log out</span>
 									</button>
 								</form>
 							) : (
 								<Link href="/login" className="block text-center">
-									<LoginIcon />
 									<br />
-									<span className="text-slate-500 text-xs uppercase font-bold">
-										Log in
-									</span>
+									<span className="text-slate-500 text-xs uppercase font-bold">Log in</span>
 								</Link>
 							)}
 						</div>
@@ -70,28 +63,10 @@ export default function RootLayout({
 	);
 }
 
-function IconLink({
-	icon,
-	href,
-	label,
-}: {
-	icon: string;
-	href: string;
-	label: string;
-}) {
+function IconLink({ icon, href, label }: { icon: string; href: string; label: string }) {
 	return (
-		<a
-			href={href}
-			className="text-slate-500 text-xs uppercase font-bold text-center"
-		>
-			<Image
-				src={icon}
-				aria-hidden
-				className="inline-block h-8"
-				alt={""}
-				width={30}
-				height={30}
-			/>
+		<a href={href} className="text-slate-500 text-xs uppercase font-bold text-center">
+			<Image src={icon} aria-hidden className="inline-block h-8" alt={""} width={30} height={30} />
 			<span className="block mt-2">{label}</span>
 		</a>
 	);
