@@ -1,31 +1,25 @@
 "use client";
 
 import { TrashIcon } from "@heroicons/react/16/solid";
+import Link from "next/link";
 import { useFormStatus } from "react-dom";
 import { deleteBoardAction } from "./actions";
 
-export function Board({
-	name,
-	id,
-	color,
-}: {
-	name: string;
-	id: number;
-	color: string;
-}) {
+export function Board({ name, id, color }: { name: string; id: number; color: string }) {
 	return (
-		<a
+		<Link
+			prefetch={true}
 			href={`/board/${id}`}
 			className="w-60 h-40 p-4 block border-b-8 shadow rounded hover:shadow-lg bg-white relative"
 			style={{ borderColor: color }}
 		>
-			<form action={deleteBoardAction}>
+			<form action={deleteBoardAction} onClick={(event) => event.stopPropagation()}>
 				<input type="hidden" name="intent" value="delete-board" />
 				<input type="hidden" name="boardId" value={id} />
 				<div className="font-bold">{name}</div>
 				<DeleteBoardButton />
 			</form>
-		</a>
+		</Link>
 	);
 }
 
