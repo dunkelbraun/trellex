@@ -50,7 +50,7 @@ export function ColumnCard({
 		>
 			<View>
 				<DropAreaIndicator position="top" acceptDrop={acceptDrop} />
-				<View paddingInline={2}>
+				<View paddingInline={3}>
 					<View
 						borderRadius="medium"
 						borderColor="neutral"
