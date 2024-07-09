@@ -27,7 +27,6 @@
 		"react-dom": "19.0.0-rc-f994737d14-20240522",
 		"reshaped": "^3.0.1",
 		"server-only": "^0.0.1",
-		"usehooks-ts": "^3.1.0",
 		"zod": "^3.23.8"
 	},
 	"devDependencies": {
