@@ -26,7 +26,7 @@ export function AddCard() {
 	};
 
 	return addCard ? (
-		<View paddingBottom={3} paddingInline={2}>
+		<View paddingBottom={3} paddingInline={3}>
 			<form
 				onSubmit={() => {
 					if (textAreaRef.current) {
