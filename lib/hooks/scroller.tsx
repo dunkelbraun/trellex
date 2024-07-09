@@ -34,8 +34,6 @@ export const useScroller = <T extends HTMLElement>({
 			if (scrollRef) {
 				const performScroll = condition !== undefined ? condition(record) : true;
 				if (performScroll) {
-					const currentOverflow = scrollRef.style.overflow;
-					scrollRef.style.overflow = "hidden";
 					switch (direction) {
 						case "bottom":
 							scrollRef.scrollTo({ behavior, top: scrollRef.scrollHeight });
@@ -44,7 +42,6 @@ export const useScroller = <T extends HTMLElement>({
 							scrollRef.scrollTo({ behavior, left: scrollRef.scrollWidth });
 							break;
 					}
-					scrollRef.style.overflow = currentOverflow;
 				}
 			}
 		});
