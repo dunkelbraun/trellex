@@ -19,6 +19,7 @@
 		"@prisma/client": "^5.16.1",
 		"@types/react": "npm:types-react@^19.0.0-rc.1",
 		"@types/react-dom": "npm:types-react-dom@rc",
+		"@vercel/speed-insights": "^1.0.12",
 		"babel-plugin-react-compiler": "^0.0.0-experimental-938cd9a-20240601",
 		"cookie-signature": "^1.2.1",
 		"iron-session": "^8.0.1",
