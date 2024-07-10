@@ -5,7 +5,7 @@ import { Link, Text, View } from "reshaped";
 export function NavBarLeft() {
 	return (
 		<View direction="row" gap={2}>
-			<Link variant="plain" href="/home" color="inherit">
+			<Link variant="plain" href="/" color="inherit">
 				<Text variant="body-3" weight="bold">
 					Trellex
 				</Text>
