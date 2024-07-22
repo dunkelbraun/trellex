@@ -101,14 +101,7 @@ export function NavBarRight({ accountId }: { accountId?: string }) {
 					</View>
 					{accountId === undefined ? (
 						<Link href="/login">
-							<Button
-								endIcon={<ArrowRightEndOnRectangleIcon />}
-								size="medium"
-								variant="ghost"
-								attributes={{
-									tabIndex: 0,
-								}}
-							>
+							<Button endIcon={<ArrowRightEndOnRectangleIcon />} size="medium" variant="ghost">
 								Log in
 							</Button>
 						</Link>
