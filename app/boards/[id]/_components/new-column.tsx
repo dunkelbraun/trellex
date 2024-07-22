@@ -1,7 +1,6 @@
 "use client";
 
 import { PlusIcon } from "@heroicons/react/20/solid";
-import { delay } from "@lib/delay";
 import {
 	startTransition,
 	useContext,
@@ -55,10 +54,8 @@ export function NewColumn() {
 					await createColumn(column);
 				}}
 				onBlur={(event) => {
-					if (event.relatedTarget !== null && !formRef.current?.contains(event.relatedTarget)) {
-						delay(100, async () => {
-							startTransition(() => deactivate());
-						});
+					if (event.relatedTarget === null || !formRef.current?.contains(event.relatedTarget)) {
+						startTransition(() => deactivate());
 					}
 				}}
 			>
@@ -80,7 +77,18 @@ export function NewColumn() {
 					}}
 					onChange={({ event }) => event && setInputValue(event.currentTarget.value)}
 				/>
-				<View direction="row-reverse" justify="start" gap={4} paddingTop={4}>
+				<View direction="row" justify="end" gap={4} paddingTop={4}>
+					<Button
+						as="button"
+						variant="faded"
+						color="neutral"
+						onClick={deactivate}
+						attributes={{
+							tabIndex: 0,
+						}}
+					>
+						Cancel
+					</Button>
 					<Button
 						type="submit"
 						variant="faded"
@@ -90,16 +98,6 @@ export function NewColumn() {
 						}}
 					>
 						Save Column
-					</Button>
-					<Button
-						variant="faded"
-						color="neutral"
-						onClick={deactivate}
-						attributes={{
-							tabIndex: 0,
-						}}
-					>
-						Cancel
 					</Button>
 				</View>
 			</form>
