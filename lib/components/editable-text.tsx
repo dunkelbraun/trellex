@@ -77,6 +77,7 @@ export function EditableText({ action, text, input, buttonLabel }: EditableTextP
 				backgroundColor: "transparent",
 				padding: "10px 10px 10px 10px",
 			}}
+			tabIndex={0}
 		>
 			{optimisticName || "Edit"}
 		</button>

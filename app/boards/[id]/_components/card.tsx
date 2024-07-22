@@ -105,6 +105,7 @@ export function ColumnCard({
 									variant="ghost"
 									icon={<TrashIcon />}
 									attributes={{
+										tabIndex: 0,
 										"aria-label": "Delete card",
 									}}
 								/>
