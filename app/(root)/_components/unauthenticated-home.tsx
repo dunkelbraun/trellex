@@ -14,24 +14,30 @@ export function UnauthenticatedHome() {
 				</Text>
 			</View>
 			<View direction="row" gap={8} divided paddingTop={12} justify="center">
-				<Button
-					variant="ghost"
-					color="neutral"
-					attributes={{
-						tabIndex: 0,
-					}}
-				>
-					<Link href="/sign-up">Sign up</Link>
-				</Button>
-				<Button
-					variant="ghost"
-					color="neutral"
-					attributes={{
-						tabIndex: 0,
-					}}
-				>
-					<Link href="/login">Login</Link>
-				</Button>
+				<Link href="/sign-up" tabIndex={-1}>
+					<Button
+						as="button"
+						variant="ghost"
+						color="neutral"
+						attributes={{
+							tabIndex: 0,
+						}}
+					>
+						Sign up
+					</Button>
+				</Link>
+				<Link href="/login" tabIndex={-1}>
+					<Button
+						as="button"
+						variant="ghost"
+						color="neutral"
+						attributes={{
+							tabIndex: 0,
+						}}
+					>
+						Login
+					</Button>
+				</Link>
 			</View>
 		</View>
 	);
