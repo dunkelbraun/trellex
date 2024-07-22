@@ -33,6 +33,7 @@ export function AddCard() {
 						textAreaRef.current.style.height = "52px";
 					}
 					item.title = textValue.trim();
+					textAreaRef.current?.focus();
 					setTextValue("");
 				}}
 				action={async () => {
@@ -107,7 +108,14 @@ export function AddCard() {
 					>
 						Cancel
 					</Button>
-					<Button type="submit" variant="faded" color="primary">
+					<Button
+						variant="faded"
+						color="primary"
+						type="submit"
+						attributes={{
+							tabIndex: 0,
+						}}
+					>
 						Save Card
 					</Button>
 				</View>
