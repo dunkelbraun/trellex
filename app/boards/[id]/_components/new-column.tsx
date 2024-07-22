@@ -81,10 +81,24 @@ export function NewColumn() {
 					onChange={({ event }) => event && setInputValue(event.currentTarget.value)}
 				/>
 				<View direction="row-reverse" justify="start" gap={4} paddingTop={4}>
-					<Button type="submit" variant="faded" color="primary">
+					<Button
+						type="submit"
+						variant="faded"
+						color="primary"
+						attributes={{
+							tabIndex: 0,
+						}}
+					>
 						Save Column
 					</Button>
-					<Button variant="faded" color="neutral" onClick={deactivate}>
+					<Button
+						variant="faded"
+						color="neutral"
+						onClick={deactivate}
+						attributes={{
+							tabIndex: 0,
+						}}
+					>
 						Cancel
 					</Button>
 				</View>
@@ -95,7 +109,7 @@ export function NewColumn() {
 			variant="ghost"
 			color="primary"
 			onClick={activate}
-			attributes={{ "aria-label": "Add new column" }}
+			attributes={{ "aria-label": "Add new column", tabIndex: 0 }}
 		>
 			<PlusIcon width={36} height={36} />
 		</Button>

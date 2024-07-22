@@ -66,6 +66,9 @@ export default function AuthForm({ action, buttonLabel, children }: FormProps) {
 							variant="solid"
 							color="primary"
 							fullWidth={true}
+							attributes={{
+								tabIndex: 0,
+							}}
 						>
 							{buttonLabel}
 						</Button>

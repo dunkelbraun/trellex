@@ -105,6 +105,9 @@ export function AddCard() {
 							setTextValue("");
 							setEditCard(false);
 						}}
+						attributes={{
+							tabIndex: 0,
+						}}
 					>
 						Cancel
 					</Button>
@@ -139,6 +142,7 @@ export function AddCard() {
 					style: {
 						justifyContent: "start",
 					},
+					tabIndex: 0,
 				}}
 			>
 				<PlusCircleIcon width={20} height={20} />

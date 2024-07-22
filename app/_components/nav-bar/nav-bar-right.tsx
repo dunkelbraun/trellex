@@ -27,7 +27,10 @@ export function NavBarRight({ accountId }: { accountId?: string }) {
 				<DropdownMenu>
 					<DropdownMenu.Trigger>
 						{(attributes) => (
-							<Button attributes={{ ...attributes, "aria-label": "Menu" }} variant="ghost">
+							<Button
+								attributes={{ ...attributes, "aria-label": "Menu", tabIndex: 0 }}
+								variant="ghost"
+							>
 								<Bars3Icon height={24} width={24} color="inherit" />
 							</Button>
 						)}
@@ -98,7 +101,14 @@ export function NavBarRight({ accountId }: { accountId?: string }) {
 					</View>
 					{accountId === undefined ? (
 						<Link href="/login">
-							<Button endIcon={<ArrowRightEndOnRectangleIcon />} size="medium" variant="ghost">
+							<Button
+								endIcon={<ArrowRightEndOnRectangleIcon />}
+								size="medium"
+								variant="ghost"
+								attributes={{
+									tabIndex: 0,
+								}}
+							>
 								Log in
 							</Button>
 						</Link>
@@ -109,6 +119,9 @@ export function NavBarRight({ accountId }: { accountId?: string }) {
 								size="medium"
 								variant="ghost"
 								type="submit"
+								attributes={{
+									tabIndex: 0,
+								}}
 							>
 								Log out
 							</Button>

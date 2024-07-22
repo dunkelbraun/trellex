@@ -46,6 +46,9 @@ export function BoardCard({ board, optimisticBoardDelete }: BoardProps) {
 								event.preventDefault();
 								activate();
 							}}
+							attributes={{
+								tabIndex: 0,
+							}}
 						>
 							<TrashIcon height={16} width={16} />
 						</Button>
@@ -92,11 +95,25 @@ export function BoardCard({ board, optimisticBoardDelete }: BoardProps) {
 						}}
 					>
 						<View direction="row" gap={3} justify="end">
-							<Button color="neutral" variant="faded" onClick={deactivate}>
+							<Button
+								color="neutral"
+								variant="faded"
+								onClick={deactivate}
+								attributes={{
+									tabIndex: 0,
+								}}
+							>
 								Cancel
 							</Button>
 							<input type="hidden" name="boardId" value={board.id} />
-							<Button color="critical" variant="faded" type="submit">
+							<Button
+								color="critical"
+								variant="faded"
+								type="submit"
+								attributes={{
+									tabIndex: 0,
+								}}
+							>
 								Delete Board
 							</Button>
 						</View>
