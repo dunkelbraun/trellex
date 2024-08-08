@@ -1,5 +1,5 @@
 import { prisma } from "@db/prisma";
-import { getSession } from "@lib/session";
+import { ensureUser } from "@lib/user";
 import { notFound } from "next/navigation";
 import { Board } from "./_components/board";
 
@@ -16,8 +16,8 @@ async function boardData(boardId: number, accountId: string) {
 }
 
 export default async function Page({ params }: { params: { id: string } }) {
-	const userId = (await getSession()).userId!;
-	let board = (await boardData(parseInt(params.id), userId))!;
+	const user = await ensureUser();
+	let board = (await boardData(parseInt(params.id), user.id))!;
 
 	if (!board) {
 		return notFound();
