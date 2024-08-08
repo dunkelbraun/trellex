@@ -7,7 +7,6 @@ import { NewBoard } from "./new-board";
 
 export async function UserHome({ userId }: { userId: string }) {
 	let boards = await getHomeData(userId);
-
 	return (
 		<View padding={4} gap={12}>
 			<NewBoard />
