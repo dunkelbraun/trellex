@@ -1,7 +1,7 @@
 "use server";
 
 import { prisma } from "@db/prisma";
-import { dbUserOrRedirectToLogin } from "@lib/user";
+import { ensureUser } from "@lib/user";
 import { notFound } from "next/navigation";
 import { Board } from "./_components/board";
 
@@ -18,7 +18,7 @@ async function boardData(boardId: number, accountId: string) {
 }
 
 export default async function Page({ params }: { params: { id: string } }) {
-	const user = await dbUserOrRedirectToLogin();
+	const user = await ensureUser();
 	let board = (await boardData(parseInt(params.id), user.id))!;
 
 	if (!board) {
