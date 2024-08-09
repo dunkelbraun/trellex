@@ -3,6 +3,7 @@
 import { Text } from "@components/text";
 import { ExclamationTriangleIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { delay } from "@lib/delay";
+import Link from "next/link";
 import { startTransition } from "react";
 import { Button, Card, Modal, View, useToggle } from "reshaped";
 import { deleteBoardAction } from "../actions";
@@ -17,48 +18,50 @@ export function BoardCard({ board, optimisticBoardDelete }: BoardProps) {
 
 	return (
 		<>
-			<Card padding={0} href={`/boards/${board.id}`} elevated={true}>
-				<View
-					grow={{ s: true, m: false }}
-					width={{ s: undefined, m: 60 }}
-					backgroundColor="neutral-faded"
-					paddingBottom={8}
-				>
+			<Link href={`/boards/${board.id}`}>
+				<View shadow="raised">
 					<View
-						direction="row"
-						justify="space-between"
-						align="center"
-						gap={2}
-						padding={4}
-						paddingBottom={4}
-						wrap={false}
+						grow={{ s: true, m: false }}
+						width={{ s: undefined, m: 60 }}
+						backgroundColor="neutral-faded"
+						paddingBottom={8}
 					>
-						<View grow>
-							<Text as="h3" variant="body-3" weight="semibold" maxLines={1}>
-								{board.name}
-							</Text>
-						</View>
-						<Button
-							variant="ghost"
-							aria-label="Delete board"
-							onClick={(event) => {
-								event.stopPropagation();
-								event.preventDefault();
-								activate();
-							}}
-							attributes={{
-								tabIndex: 0,
-							}}
+						<View
+							direction="row"
+							justify="space-between"
+							align="center"
+							gap={2}
+							padding={4}
+							paddingBottom={4}
+							wrap={false}
 						>
-							<TrashIcon height={16} width={16} />
-						</Button>
+							<View grow>
+								<Text as="h3" variant="body-3" weight="semibold" maxLines={1}>
+									{board.name}
+								</Text>
+							</View>
+							<Button
+								variant="ghost"
+								aria-label="Delete board"
+								onClick={(event) => {
+									event.stopPropagation();
+									event.preventDefault();
+									activate();
+								}}
+								attributes={{
+									tabIndex: 0,
+								}}
+							>
+								<TrashIcon height={16} width={16} />
+							</Button>
+						</View>
 					</View>
+					<View
+						height={6}
+						attributes={{ style: { backgroundColor: board.color, borderColor: board.color } }}
+					></View>
 				</View>
-				<View
-					height={6}
-					attributes={{ style: { backgroundColor: board.color, borderColor: board.color } }}
-				></View>
-			</Card>
+			</Link>
 			<Modal padding={0} active={active} onClose={deactivate}>
 				<Card padding={4}>
 					<View direction="row" gap={4} paddingBottom={4}>
