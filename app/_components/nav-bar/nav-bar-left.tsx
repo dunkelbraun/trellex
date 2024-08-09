@@ -1,11 +1,12 @@
 "use client";
 
-import { Link, Text, View } from "reshaped";
+import Link from "next/link";
+import { Text, View } from "reshaped";
 
 export function NavBarLeft() {
 	return (
 		<View direction="row" gap={2}>
-			<Link variant="plain" href="/" color="inherit">
+			<Link href="/">
 				<Text variant="body-3" weight="bold">
 					Trellex
 				</Text>
