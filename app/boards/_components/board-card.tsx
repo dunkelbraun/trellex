@@ -7,7 +7,8 @@ import Link from "next/link";
 import { startTransition } from "react";
 import { Button, Card, Modal, View, useToggle } from "reshaped";
 import { deleteBoardAction } from "../actions";
-import type { OptimisticBoard } from "./boards";
+import type { OptimisticBoard } from "./board-cards";
+
 interface BoardProps {
 	board: OptimisticBoard;
 	optimisticBoardDelete: (boardToDelete: OptimisticBoard) => void;
