@@ -54,7 +54,6 @@ export function useOptimisticBoard(board: BoardWithColumnsAndItems) {
 									acc.push(col);
 									return acc;
 							}
-							return acc;
 						},
 						[] as BoardWithColumnsAndItems["columns"],
 					);
