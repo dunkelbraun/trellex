@@ -1,10 +1,12 @@
 /** @type {import('postcss-load-config').Config} */
 
-import reshaped from "reshaped/config/postcss";
+import { getConfig } from "reshaped/config/postcss";
 
 const config = {
 	plugins: {
-		...reshaped.config.plugins,
+		...getConfig({
+			themeMediaCSSPath: "./node_modules/reshaped/dist/cjs/themes/reshaped/media.css",
+		}).plugins,
 		tailwindcss: {},
 		autoprefixer: {},
 	},

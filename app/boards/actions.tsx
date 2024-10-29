@@ -2,6 +2,7 @@
 
 import { clearSession, getSession } from "@lib/session";
 import { revalidatePath } from "next/cache";
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { createBoard, deleteBoard } from "./_lib/queries";
 
@@ -21,7 +22,7 @@ export async function deleteBoardAction(formData: FormData) {
 }
 
 export async function logout() {
-	await clearSession();
+	await clearSession(await cookies());
 	revalidatePath("/");
 	redirect("/login");
 }

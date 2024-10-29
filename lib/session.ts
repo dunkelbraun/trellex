@@ -1,4 +1,5 @@
 import { getIronSession } from "iron-session";
+import type { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
 import { cookies } from "next/headers.js";
 
 let secret = process.env.COOKIE_SECRET || "default";
@@ -10,7 +11,7 @@ if (secret === "default") {
 }
 
 export async function setSession(userId: string) {
-	const session = await getIronSession<{ userId?: string }>(cookies(), {
+	const session = await getIronSession<{ userId?: string }>(await cookies(), {
 		password: secret,
 		cookieName: "auth",
 		cookieOptions: { secure: process.env.NODE_ENV === "production" ? true : false },
@@ -19,17 +20,17 @@ export async function setSession(userId: string) {
 	await session.save();
 }
 
-export async function getSession() {
-	const session = await getIronSession<{ userId?: string }>(cookies(), {
+export async function getSession(requestCookies?: ReadonlyRequestCookies) {
+	const session = await getIronSession<{ userId?: string }>(requestCookies ?? (await cookies()), {
 		password: secret,
 		cookieName: "auth",
 	});
 	return session;
 }
 
-export async function clearSession() {
-	cookies().delete("auth");
-	const session = await getIronSession<{ userId?: string }>(cookies(), {
+export async function clearSession(cookies: ReadonlyRequestCookies) {
+	cookies.delete("auth");
+	const session = await getIronSession<{ userId?: string }>(cookies, {
 		password: secret,
 		cookieName: "auth",
 		cookieOptions: { secure: process.env.NODE_ENV === "production" ? true : false },

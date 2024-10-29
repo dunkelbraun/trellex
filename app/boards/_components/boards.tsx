@@ -1,9 +1,9 @@
 "use client";
 
+import type { Board } from "@prisma/client";
 import { useOptimistic } from "react";
 import { Text, View } from "reshaped";
 import { BoardCard } from "./board-card";
-import type { Board } from "@prisma/client";
 
 interface BoardProps {
 	boards: Board[];
@@ -15,7 +15,7 @@ export interface OptimisticBoard extends Board {
 
 export function Boards({ boards }: BoardProps) {
 	const [optimisticBoards, addOptimisticBoard] = useOptimistic(
-		boards,
+		boards as OptimisticBoard[],
 		(state: OptimisticBoard[], newBoard: OptimisticBoard) => [
 			...state.filter((item) => item.id !== newBoard.id),
 			newBoard,

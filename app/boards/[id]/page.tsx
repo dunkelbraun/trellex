@@ -15,9 +15,10 @@ async function boardData(boardId: number, accountId: string) {
 	});
 }
 
-export default async function Page({ params }: { params: { id: string } }) {
+export default async function Page({ params }: { params: Promise<{ id: string }> }) {
+	const { id } = await params;
 	const user = await ensureUser();
-	let board = (await boardData(parseInt(params.id), user.id))!;
+	let board = (await boardData(parseInt(id), user.id))!;
 
 	if (!board) {
 		return notFound();

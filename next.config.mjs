@@ -3,7 +3,6 @@
 const nextConfig = {
 	transpilePackages: ["reshaped"],
 	experimental: {
-		typedRoutes: true,
 		reactCompiler: true,
 		optimizePackageImports: ["reshaped"],
 	},
