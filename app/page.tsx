@@ -18,31 +18,43 @@ export default async function Page() {
 				</Text>
 			</View>
 			<View direction="row" gap={8} divided paddingTop={12} justify="center">
-				<Link href="/sign-up" tabIndex={-1}>
-					<Button
-						as="button"
-						variant="ghost"
-						color="neutral"
-						attributes={{
-							tabIndex: 0,
-						}}
-					>
-						Sign up
-					</Button>
-				</Link>
-				<Link href="/login" tabIndex={-1}>
-					<Button
-						as="button"
-						variant="ghost"
-						color="neutral"
-						attributes={{
-							tabIndex: 0,
-						}}
-					>
-						Login
-					</Button>
-				</Link>
+				<SignUpButton />
+				<LoginButton />
 			</View>
 		</View>
+	);
+}
+
+function LoginButton() {
+	return (
+		<Link href="/login" tabIndex={-1}>
+			<Button
+				as="button"
+				variant="ghost"
+				color="neutral"
+				attributes={{
+					tabIndex: 0,
+				}}
+			>
+				Login
+			</Button>
+		</Link>
+	);
+}
+
+function SignUpButton() {
+	return (
+		<Link href="/sign-up" tabIndex={-1}>
+			<Button
+				as="button"
+				variant="ghost"
+				color="neutral"
+				attributes={{
+					tabIndex: 0,
+				}}
+			>
+				Sign up
+			</Button>
+		</Link>
 	);
 }
