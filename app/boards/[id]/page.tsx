@@ -1,28 +1,15 @@
-import { prisma } from "@db/prisma";
 import { ensureUser } from "@lib/user";
-import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import { Board } from "./_components/board";
-
-async function boardData(boardId: number, accountId: string) {
-	return prisma.board.findUnique({
-		where: {
-			id: boardId,
-			accountId: accountId,
-		},
-		include: {
-			columns: { orderBy: { order: "asc" }, include: { items: true } },
-		},
-	});
-}
+import { BoardFallBack } from "./_components/board-fallback";
+import { boardData } from "./_lib/queries";
 
 export default async function Page({ params }: { params: Promise<{ id: string }> }) {
 	const { id } = await params;
 	const user = await ensureUser();
-	let board = (await boardData(parseInt(id), user.id))!;
-
-	if (!board) {
-		return notFound();
-	}
-
-	return <Board board={board} />;
+	return (
+		<Suspense fallback={<BoardFallBack />}>
+			<Board board={boardData(parseInt(id), user.id)} />
+		</Suspense>
+	);
 }
