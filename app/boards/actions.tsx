@@ -1,7 +1,8 @@
 "use server";
 
+import { cacheTagResolver } from "@lib/cache";
 import { clearSession, getSession } from "@lib/session";
-import { revalidatePath } from "next/cache";
+import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { createBoard, deleteBoard } from "./_lib/queries";
@@ -18,11 +19,11 @@ export async function deleteBoardAction(formData: FormData) {
 	const session = await getSession();
 	let boardId = Number(formData.get("boardId"));
 	await deleteBoard(boardId, session.userId!);
-	revalidatePath("/home/");
 }
 
 export async function logout() {
+	const session = await getSession();
+	revalidateTag(cacheTagResolver.userBoards({ userId: session.userId! }));
 	await clearSession(await cookies());
-	revalidatePath("/");
 	redirect("/login");
 }

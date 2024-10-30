@@ -24,7 +24,7 @@
     "babel-plugin-react-compiler": "^0.0.0-experimental-938cd9a-20240601",
     "cookie-signature": "^1.2.1",
     "iron-session": "^8.0.3",
-    "next": "^15.0.2",
+    "next": "^15.0.3-canary.4",
     "react": "19.0.0-rc-69d4b800-20241021",
     "react-dom": "19.0.0-rc-69d4b800-20241021",
     "reshaped": "^3.2.5",

@@ -1,14 +1,16 @@
 "use server";
 
 import { prisma } from "@db/prisma";
+import { cacheTagResolver } from "@lib/cache";
 import { getSession } from "@lib/session";
 import type { Column, Item } from "@prisma/client";
-import { revalidatePath } from "next/cache";
+import { revalidateTag } from "next/cache";
 import { columnSchema } from "./_lib/column";
 import { itemSchema } from "./_lib/item";
 
 export async function createColumn(column: Column) {
-	revalidatePath(`/boards/${column.boardId}`);
+	const accountId = (await getSession()).userId!;
+	revalidateTag(cacheTagResolver.userBoard({ userId: accountId, boardId: column.boardId }));
 	return prisma.column.create({ data: columnSchema.parse(column) });
 }
 
@@ -20,7 +22,7 @@ export async function updateBoardName(formData: FormData) {
 		where: { id: boardId, accountId: accountId },
 		data: { name },
 	});
-	revalidatePath(`/boards/${boardId}`);
+	revalidateTag(cacheTagResolver.userBoard({ userId: accountId, boardId }));
 	return { name: name, id: boardId };
 }
 
@@ -32,7 +34,7 @@ export async function updateColumnName(formData: FormData) {
 		where: { id, Board: { accountId } },
 		data: { name },
 	});
-	revalidatePath(`/boards/${result.boardId}`);
+	revalidateTag(cacheTagResolver.userBoard({ userId: accountId, boardId: result.boardId }));
 	return result;
 }
 
@@ -49,7 +51,7 @@ export async function createColumnItem(item: Item) {
 		create: item,
 		update: item,
 	});
-	revalidatePath(`/boards/${item.boardId}`, "page");
+	revalidateTag(cacheTagResolver.userBoard({ userId: accountId, boardId: item.boardId }));
 }
 
 export async function deleteItem(item: Item) {
@@ -58,5 +60,5 @@ export async function deleteItem(item: Item) {
 	await prisma.item.delete({
 		where: { id: item.id, boardId: item.boardId, columnId: item.columnId, Board: { accountId } },
 	});
-	revalidatePath(`/boards/${item.boardId}`);
+	revalidateTag(cacheTagResolver.userBoard({ userId: accountId, boardId: item.boardId }));
 }

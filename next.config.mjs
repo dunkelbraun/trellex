@@ -5,6 +5,7 @@ const nextConfig = {
 	experimental: {
 		reactCompiler: true,
 		optimizePackageImports: ["reshaped"],
+		dynamicIO: true,
 	},
 };
 

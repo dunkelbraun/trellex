@@ -2,7 +2,10 @@ import "server-only";
 
 import { prisma } from "@db/prisma";
 import { getSession } from "@lib/session";
+import { cacheLife } from "next/dist/server/use-cache/cache-life";
+import { cacheTag } from "next/dist/server/use-cache/cache-tag";
 import { redirect } from "next/navigation";
+import { cacheTagResolver } from "./cache";
 
 export async function ensureUser() {
 	const user = await sessionUser();
@@ -22,12 +25,21 @@ export async function ensureNoUser() {
 
 async function sessionUser() {
 	const session = await getSession();
-	if (session.userId === undefined) {
+	const userId = session.userId;
+	if (userId === undefined) {
 		return;
 	}
+	return await getUser(userId);
+}
+
+async function getUser(userId: string) {
+	"use cache";
+	cacheLife("days");
+	cacheTag(cacheTagResolver.user({ userId }));
+
 	const user = await prisma.account.findUnique({
 		where: {
-			id: session.userId,
+			id: userId,
 		},
 	});
 	if (user === null) {

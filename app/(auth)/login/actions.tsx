@@ -1,6 +1,8 @@
 "use server";
 
+import { cacheTagResolver } from "@lib/cache";
 import { setSession } from "@lib/session";
+import { revalidateTag } from "next/cache";
 import { redirect } from "next/navigation.js";
 import z from "zod";
 import type { AuthFormState } from "../_components/auth-form";
@@ -11,9 +13,11 @@ export async function signIn(prevState: AuthFormState, formData: FormData) {
 	const data = Object.fromEntries(formData.entries());
 	const validation = await schema.safeParseAsync(data);
 	if (validation.success) {
+		revalidateTag(cacheTagResolver.user({ userId: validation.data.userId }));
 		await setSession(validation.data.userId);
 		redirect("/");
 	}
+
 	return {
 		errors: validation.error.format(),
 		formData,
