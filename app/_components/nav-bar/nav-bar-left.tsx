@@ -3,10 +3,10 @@
 import Link from "next/link";
 import { Text, View } from "reshaped";
 
-export function NavBarLeft() {
+export function NavBarLeft({ isLoggedIn }: { isLoggedIn: boolean }) {
 	return (
 		<View direction="row" gap={2}>
-			<Link href="/">
+			<Link href={isLoggedIn ? "/boards" : "/"}>
 				<Text variant="body-3" weight="bold">
 					Trellex
 				</Text>
