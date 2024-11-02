@@ -13,6 +13,9 @@ export async function middleware(request: NextRequest) {
 	) {
 		return Response.redirect(new URL("/login", request.url));
 	}
+	if (session.userId !== undefined && pathName === "/") {
+		return Response.redirect(new URL("/boards", request.url));
+	}
 }
 
 export const config = {

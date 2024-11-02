@@ -1,11 +1,9 @@
 "use server";
 
-import { ensureNoUser } from "@lib/user";
 import Link from "next/link";
 import { Button, Text, View } from "reshaped";
 
 export default async function Page() {
-	await ensureNoUser();
 	return (
 		<View height="100%" direction="column" align="center" padding={10} paddingTop={24}>
 			<View maxWidth={140} gap={4}>
