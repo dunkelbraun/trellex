@@ -65,14 +65,18 @@ function SubmitButton() {
 function ColorInput() {
 	const { attributes } = useFormControl();
 	return (
-		<input
-			{...attributes}
-			id="board-color"
-			name="color"
-			type="color"
-			defaultValue="#f9f9fb"
-			tabIndex={0}
-			style={{ inlineSize: "60px", height: "36px" }}
-		/>
+		<View direction="row">
+			<View borderRadius="small" borderColor="primary-faded">
+				<input
+					{...attributes}
+					id="board-color"
+					name="color"
+					type="color"
+					defaultValue="#ffffff"
+					tabIndex={0}
+					style={{ inlineSize: "60px", height: "36px", borderWidth: "0px" }}
+				/>
+			</View>
+		</View>
 	);
 }
