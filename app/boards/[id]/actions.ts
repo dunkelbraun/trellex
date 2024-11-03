@@ -4,7 +4,7 @@ import { prisma } from "@db/prisma";
 import { cacheTagResolver } from "@lib/cache";
 import { getSession } from "@lib/session";
 import type { Column, Item } from "@prisma/client";
-import { revalidateTag } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { columnSchema } from "./_lib/column";
 import { itemSchema } from "./_lib/item";
 
@@ -24,6 +24,8 @@ export async function updateBoardName(formData: FormData) {
 	});
 	revalidateTag(cacheTagResolver.userBoards({ userId: accountId }));
 	revalidateTag(cacheTagResolver.userBoard({ userId: accountId, boardId }));
+	revalidatePath("/boards");
+	revalidatePath(`/boards/${boardId}`);
 	return { name: name, id: boardId };
 }
 
@@ -36,6 +38,7 @@ export async function updateColumnName(formData: FormData) {
 		data: { name },
 	});
 	revalidateTag(cacheTagResolver.userBoard({ userId: accountId, boardId: result.boardId }));
+	revalidatePath(`/boards/${result.boardId}`);
 	return result;
 }
 
@@ -53,6 +56,7 @@ export async function createColumnItem(item: Item) {
 		update: item,
 	});
 	revalidateTag(cacheTagResolver.userBoard({ userId: accountId, boardId: item.boardId }));
+	revalidatePath(`/boards/${item.boardId}`);
 }
 
 export async function deleteItem(item: Item) {
@@ -62,4 +66,5 @@ export async function deleteItem(item: Item) {
 		where: { id: item.id, boardId: item.boardId, columnId: item.columnId, Board: { accountId } },
 	});
 	revalidateTag(cacheTagResolver.userBoard({ userId: accountId, boardId: item.boardId }));
+	revalidatePath(`/boards/${item.boardId}`);
 }
