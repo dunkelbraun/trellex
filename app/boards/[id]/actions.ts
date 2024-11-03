@@ -22,6 +22,7 @@ export async function updateBoardName(formData: FormData) {
 		where: { id: boardId, accountId: accountId },
 		data: { name },
 	});
+	revalidateTag(cacheTagResolver.userBoards({ userId: accountId }));
 	revalidateTag(cacheTagResolver.userBoard({ userId: accountId, boardId }));
 	return { name: name, id: boardId };
 }
