@@ -20,10 +20,3 @@ export async function deleteBoardAction(formData: FormData) {
 	let boardId = Number(formData.get("boardId"));
 	await deleteBoard(boardId, session.userId!);
 }
-
-export async function logout() {
-	const session = await getSession();
-	revalidateTag(cacheTagResolver.userBoards({ userId: session.userId! }));
-	await clearSession(await cookies());
-	redirect("/login");
-}
