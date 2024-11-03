@@ -15,7 +15,7 @@ export async function signIn(prevState: AuthFormState, formData: FormData) {
 	if (validation.success) {
 		revalidateTag(cacheTagResolver.user({ userId: validation.data.userId }));
 		await setSession(validation.data.userId);
-		redirect("/");
+		redirect("/boards");
 	}
 
 	return {
