@@ -19,7 +19,7 @@ export function BoardCard({ board, optimisticBoardDelete }: BoardProps) {
 
 	return (
 		<>
-			<Link href={`/boards/${board.id}`}>
+			<Link href={`/boards/${board.id}`} prefetch={false}>
 				<View shadow="raised">
 					<View
 						grow={{ s: true, m: false }}
