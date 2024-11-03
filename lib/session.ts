@@ -11,21 +11,22 @@ if (secret === "default") {
 }
 
 export async function setSession(userId: string) {
-	const session = await getIronSession<{ userId?: string }>(await cookies(), {
-		password: secret,
-		cookieName: "auth",
-		cookieOptions: { secure: process.env.NODE_ENV === "production" ? true : false },
-	});
+	const session = await getSession();
 	session.userId = userId;
 	await session.save();
 }
 
 export async function getSession(requestCookies?: ReadonlyRequestCookies) {
-	const session = await getIronSession<{ userId?: string }>(requestCookies ?? (await cookies()), {
+	return await getIronSession<{ userId?: string }>(requestCookies ?? (await cookies()), {
 		password: secret,
 		cookieName: "auth",
+		cookieOptions: { secure: process.env.NODE_ENV === "production" ? true : false },
 	});
-	return session;
+}
+
+export async function sessionUserId() {
+	const session = await getSession();
+	return session.userId;
 }
 
 export async function clearSession(cookies: ReadonlyRequestCookies) {

@@ -1,16 +1,13 @@
-"use client";
-
-import Link from "next/link";
+import { Suspense } from "react";
 import { Text, View } from "reshaped";
+import { TrellexLink, TrellexLinkFallBack } from "./trellex-link";
 
-export function NavBarLeft({ isLoggedIn }: { isLoggedIn: boolean }) {
+export function NavBarLeft({ userId }: { userId: Promise<string | undefined> }) {
 	return (
 		<View direction="row" gap={2}>
-			<Link href={isLoggedIn ? "/boards" : "/"}>
-				<Text variant="body-3" weight="bold">
-					Trellex
-				</Text>
-			</Link>
+			<Suspense fallback={<TrellexLinkFallBack />}>
+				<TrellexLink userId={userId} />
+			</Suspense>
 			<Text variant="body-3">a Next.js demo</Text>
 		</View>
 	);

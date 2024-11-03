@@ -6,6 +6,7 @@ import {
 	ArrowTopRightOnSquareIcon,
 	Bars3Icon,
 } from "@heroicons/react/24/outline";
+import { use } from "react";
 import { Button, DropdownMenu, Hidden, Link, Text, View } from "reshaped";
 import { logout } from "./logout";
 
@@ -20,7 +21,8 @@ const linkData: Record<"nextJs" | "github", { href: string; text: string }> = {
 	},
 };
 
-export function NavBarRight({ accountId }: { accountId?: string }) {
+export function NavBarRight({ userId }: { userId: Promise<string | undefined> }) {
+	const resolvedUser = use(userId);
 	return (
 		<>
 			<Hidden hide={{ s: false, m: true }}>
@@ -57,23 +59,25 @@ export function NavBarRight({ accountId }: { accountId?: string }) {
 						</DropdownMenu.Section>
 						<DropdownMenu.Section>
 							<DropdownMenu.Item
-								href={accountId === undefined ? "/login" : undefined}
+								href={resolvedUser === undefined ? "/login" : undefined}
 								onClick={
-									accountId !== undefined
+									resolvedUser !== undefined
 										? async (e) => {
 												await logout();
 											}
-										: undefined
+										: async (e) => {
+												console.log("AAAA");
+											}
 								}
 								endSlot={
-									accountId === undefined ? (
+									resolvedUser === undefined ? (
 										<ArrowLeftStartOnRectangleIcon height={16} width={16} />
 									) : (
 										<ArrowRightEndOnRectangleIcon height={16} width={16} />
 									)
 								}
 							>
-								{accountId === undefined ? "Log in" : "Log out"}
+								{resolvedUser === undefined ? "Log in" : "Log out"}
 							</DropdownMenu.Item>
 						</DropdownMenu.Section>
 					</DropdownMenu.Content>
@@ -99,7 +103,7 @@ export function NavBarRight({ accountId }: { accountId?: string }) {
 							{linkData.nextJs.text}
 						</Link>
 					</View>
-					{accountId === undefined ? (
+					{resolvedUser === undefined ? (
 						<Link href="/login">
 							<Button endIcon={<ArrowRightEndOnRectangleIcon />} size="medium" variant="ghost">
 								Log in
