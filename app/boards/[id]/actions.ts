@@ -45,6 +45,9 @@ export async function updateColumnName(formData: FormData) {
 export async function createColumnItem(item: Item) {
 	itemSchema.parse(item);
 	const accountId = (await getSession()).userId!;
+	revalidateTag(cacheTagResolver.userBoard({ userId: accountId, boardId: item.boardId }));
+	revalidatePath(`/boards/${item.boardId}`);
+
 	await prisma.item.upsert({
 		where: {
 			id: item.id,
@@ -55,16 +58,14 @@ export async function createColumnItem(item: Item) {
 		create: item,
 		update: item,
 	});
-	revalidateTag(cacheTagResolver.userBoard({ userId: accountId, boardId: item.boardId }));
-	revalidatePath(`/boards/${item.boardId}`);
 }
 
 export async function deleteItem(item: Item) {
 	itemSchema.parse(item);
 	const accountId = (await getSession()).userId!;
+	revalidateTag(cacheTagResolver.userBoard({ userId: accountId, boardId: item.boardId }));
+	revalidatePath(`/boards/${item.boardId}`);
 	await prisma.item.delete({
 		where: { id: item.id, boardId: item.boardId, columnId: item.columnId, Board: { accountId } },
 	});
-	revalidateTag(cacheTagResolver.userBoard({ userId: accountId, boardId: item.boardId }));
-	revalidatePath(`/boards/${item.boardId}`);
 }
