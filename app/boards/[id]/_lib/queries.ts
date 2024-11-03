@@ -1,13 +1,11 @@
 import { prisma } from "@db/prisma";
 import { cacheTagResolver } from "@lib/cache";
-import { ensureUser } from "@lib/user";
 import { cacheLife } from "next/dist/server/use-cache/cache-life";
 import { cacheTag } from "next/dist/server/use-cache/cache-tag";
 
-export async function boardData(params: Promise<{ id: string }>) {
-	const { id } = await params;
-	const user = await ensureUser();
-	return userBoard(user.id, parseInt(id));
+export async function boardData(params: { id: string; userId: string }) {
+	const { id, userId } = params;
+	return userBoard(userId, parseInt(id));
 }
 
 async function userBoard(userId: string, boardId: number) {
