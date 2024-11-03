@@ -1,9 +1,14 @@
 import { ensureUser } from "@lib/user";
+import { notFound } from "next/navigation";
 import { Board } from "./_components/board";
 import { boardData } from "./_lib/queries";
 
 export default async function Page({ params }: { params: Promise<{ id: string }> }) {
 	const { id } = await params;
 	const user = await ensureUser();
-	return <Board board={boardData(parseInt(id), user.id)} />;
+	const board = await boardData(parseInt(id), user.id);
+	if (board === null) {
+		notFound();
+	}
+	return <Board board={board} />;
 }

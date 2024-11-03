@@ -3,8 +3,7 @@
 import { EditableText } from "@components/editable-text";
 import { Text } from "@components/text";
 import { useScroller } from "@hooks/scroller";
-import { notFound } from "next/navigation";
-import { startTransition, use, useRef, type DragEvent } from "react";
+import { startTransition, useRef, type DragEvent } from "react";
 import { View } from "reshaped";
 import { useOptimisticBoard, type BoardWithColumnsAndItems } from "../_lib/board";
 import { CONTENT_TYPES, DraggableItem, DraggableItemProvider } from "../_lib/dnd";
@@ -14,11 +13,7 @@ import { createColumnItem, updateBoardName } from "../actions";
 import { Column } from "./column";
 import { NewColumn } from "./new-column";
 
-export function Board({ board: boardData }: { board: Promise<BoardWithColumnsAndItems | null> }) {
-	const board = use(boardData);
-	if (board == null) {
-		notFound();
-	}
+export function Board({ board }: { board: BoardWithColumnsAndItems }) {
 	const { optimisticBoard, addOptimistic } = useOptimisticBoard(board);
 	const scrollContainerRef = useRef<HTMLDivElement>(null);
 	const scrollMutationRef = useScroller<HTMLDivElement>({
