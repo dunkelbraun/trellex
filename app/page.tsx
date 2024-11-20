@@ -11,7 +11,7 @@ export default async function Page() {
 			<View maxWidth={140} gap={4}>
 				<Text as="p" variant="body-2">
 					This demo app is a clone of <Link href="https://trellix.fly.dev">Trellix</Link> made with
-					Next.js (version: 15.0.1) using RSC, Server Actions, and optimistic updates.
+					Next.js (version: 15.0.2) using RSC, Server Actions, and optimistic updates.
 				</Text>
 				<Text as="p" variant="body-2">
 					If you want to play around, click sign up!
