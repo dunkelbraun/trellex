@@ -11,10 +11,10 @@ import type { OptimisticBoard } from "./board-cards";
 
 interface BoardProps {
 	board: OptimisticBoard;
-	optimisticBoardDelete: (boardToDelete: OptimisticBoard) => void;
+	optimisticBoardDeleteAction: (boardToDelete: OptimisticBoard) => void;
 }
 
-export function BoardCard({ board, optimisticBoardDelete }: BoardProps) {
+export function BoardCard({ board, optimisticBoardDeleteAction }: BoardProps) {
 	const { active, activate, deactivate } = useToggle(false);
 
 	return (
@@ -92,7 +92,7 @@ export function BoardCard({ board, optimisticBoardDelete }: BoardProps) {
 							deactivate();
 							delay(200, async () => {
 								startTransition(async () => {
-									optimisticBoardDelete(board);
+									optimisticBoardDeleteAction(board);
 									await deleteBoardAction(formData);
 								});
 							});

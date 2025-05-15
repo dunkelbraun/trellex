@@ -30,7 +30,7 @@ export function BoardCards({ boards }: BoardCardProps) {
 					<BoardCard
 						key={board.id}
 						board={board}
-						optimisticBoardDelete={(board: OptimisticBoard) => {
+						optimisticBoardDeleteAction={(board: OptimisticBoard) => {
 							board.deleted = true;
 							addOptimisticBoard(board);
 						}}
