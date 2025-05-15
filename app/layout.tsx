@@ -12,11 +12,7 @@ export const metadata: Metadata = {
 	description: "Trellex, a Next.js demo",
 };
 
-export default async function RootLayout({
-	children,
-}: Readonly<{
-	children: ReactNode;
-}>) {
+export default async function RootLayout({ children }: { children: ReactNode }) {
 	return (
 		<html lang="en" data-rs-theme="reshaped" data-rs-color-mode="light">
 			<body>
