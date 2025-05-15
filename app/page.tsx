@@ -1,5 +1,3 @@
-"use server";
-
 import { ensureNoUser } from "@lib/user";
 import Link from "next/link";
 import { Button, Text, View } from "reshaped";
