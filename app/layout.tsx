@@ -1,6 +1,4 @@
 import "@styles/base.css";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { Divider, Reshaped, View } from "reshaped";
 import "reshaped/themes/reshaped/theme.css";
@@ -26,8 +24,6 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
 						</header>
 						<View as="main" height="100%" minHeight="0px" grow>
 							{children}
-							<SpeedInsights />
-							<Analytics />
 						</View>
 					</View>
 				</Reshaped>
