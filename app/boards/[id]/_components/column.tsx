@@ -61,7 +61,7 @@ export function Column({ column }: { column: ColumnWithItems }) {
 				width={88}
 				direction="column"
 				maxHeight="100%"
-				className="flex-shrink-0 overflow-hidden"
+				className="shrink-0 overflow-hidden"
 				attributes={{
 					onDragOver: onEventWithCardDrag((event) => {
 						if (column.items.length === 0) {

@@ -1,6 +1,122 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@theme {
+  --background-color-primary: var(--rs-color-background-primary);
+  --background-color-primary-faded: var(--rs-color-background-primary-faded);
+  --background-color-critical: var(--rs-color-background-critical);
+  --background-color-critical-faded: var(--rs-color-background-critical-faded);
+  --background-color-warning: var(--rs-color-background-warning);
+  --background-color-warning-faded: var(--rs-color-background-warning-faded);
+  --background-color-positive: var(--rs-color-background-positive);
+  --background-color-positive-faded: var(--rs-color-background-positive-faded);
+  --background-color-neutral: var(--rs-color-background-neutral);
+  --background-color-neutral-faded: var(--rs-color-background-neutral-faded);
+  --background-color-disabled: var(--rs-color-background-disabled);
+  --background-color-disabled-faded: var(--rs-color-background-disabled-faded);
+  --background-color-elevation-base: var(--rs-color-background-elevation-base);
+  --background-color-elevation-raised: var(
+    --rs-color-background-elevation-raised
+  );
+  --background-color-elevation-overlay: var(
+    --rs-color-background-elevation-overlay
+  );
+  --background-color-page: var(--rs-color-background-page);
+  --background-color-page-faded: var(--rs-color-background-page-faded);
+  --background-color-brand: var(--rs-color-brand);
+  --background-color-white: var(--rs-color-white);
+  --background-color-black: var(--rs-color-black);
+
+  --text-color-on-primary: var(--rs-color-on-background-primary);
+  --text-color-primary: var(--rs-color-foreground-primary);
+  --text-color-on-critical: var(--rs-color-on-background-critical);
+  --text-color-critical: var(--rs-color-foreground-critical);
+  --text-color-on-warning: var(--rs-color-on-background-warning);
+  --text-color-warning: var(--rs-color-foreground-warning);
+  --text-color-on-positive: var(--rs-color-on-background-positive);
+  --text-color-positive: var(--rs-color-foreground-positive);
+  --text-color-on-neutral: var(--rs-color-on-background-neutral);
+  --text-color-neutral: var(--rs-color-foreground-neutral);
+  --text-color-neutral-faded: var(--rs-color-foreground-neutral-faded);
+  --text-color-disabled: var(--rs-color-foreground-disabled);
+  --text-color-brand: var(--rs-color-brand);
+  --text-color-white: var(--rs-color-white);
+  --text-color-black: var(--rs-color-black);
+
+  --border-color-primary: var(--rs-color-border-primary);
+  --border-color-primary-faded: var(--rs-color-border-primary-faded);
+  --border-color-critical: var(--rs-color-border-critical);
+  --border-color-critical-faded: var(--rs-color-border-critical-faded);
+  --border-color-warning: var(--rs-color-border-warning);
+  --border-color-warning-faded: var(--rs-color-border-warning-faded);
+  --border-color-positive: var(--rs-color-border-positive);
+  --border-color-positive-faded: var(--rs-color-border-positive-faded);
+  --border-color-neutral: var(--rs-color-border-neutral);
+  --border-color-neutral-faded: var(--rs-color-border-neutral-faded);
+  --border-color-disabled: var(--rs-color-border-disabled);
+  --border-color-brand: var(--rs-color-brand);
+  --border-color-white: var(--rs-color-white);
+  --border-color-black: var(--rs-color-black);
+
+  --color-brand: var(--rs-color-brand);
+  --color-white: var(--rs-color-white);
+  --color-black: var(--rs-color-black);
+
+  --radius-small: var(--rs-radius-small);
+  --radius-medium: var(--rs-radius-medium);
+  --radius-large: var(--rs-radius-large);
+
+  --spacing-0: 0px;
+  --spacing-x1: var(--rs-unit-x1);
+  --spacing-x2: var(--rs-unit-x2);
+  --spacing-x3: var(--rs-unit-x3);
+  --spacing-x4: var(--rs-unit-x4);
+  --spacing-x5: var(--rs-unit-x5);
+  --spacing-x6: var(--rs-unit-x6);
+  --spacing-x7: var(--rs-unit-x7);
+  --spacing-x8: var(--rs-unit-x8);
+  --spacing-x9: var(--rs-unit-x9);
+  --spacing-x10: var(--rs-unit-x10);
+
+  --shadow-raised: var(--rs-shadow-raised);
+  --shadow-overlay: var(--rs-shadow-overlay);
+
+  --breakpoint-m: 660px;
+  --breakpoint-l: 900px;
+  --breakpoint-xl: 1280px;
+
+  --outline-color-primary: var(--rs-color-border-primary);
+  --outline-color-primary-faded: var(--rs-color-border-primary-faded);
+  --outline-color-critical: var(--rs-color-border-critical);
+  --outline-color-critical-faded: var(--rs-color-border-critical-faded);
+  --outline-color-warning: var(--rs-color-border-warning);
+  --outline-color-warning-faded: var(--rs-color-border-warning-faded);
+  --outline-color-positive: var(--rs-color-border-positive);
+  --outline-color-positive-faded: var(--rs-color-border-positive-faded);
+  --outline-color-neutral: var(--rs-color-border-neutral);
+  --outline-color-neutral-faded: var(--rs-color-border-neutral-faded);
+  --outline-color-disabled: var(--rs-color-border-disabled);
+  --outline-color-brand: var(--rs-color-brand);
+  --outline-color-white: var(--rs-color-white);
+  --outline-color-black: var(--rs-color-black);
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
 
 a:visited {
 	color: initial;
