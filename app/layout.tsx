@@ -2,10 +2,10 @@ import "@styles/base.css";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
 import { Divider, Reshaped, View } from "reshaped";
 import "reshaped/themes/reshaped/theme.css";
 import { NavBar } from "./_components/nav-bar";
+import type { ReactNode } from "react";
 
 export const metadata: Metadata = {
 	title: "Trellex",
