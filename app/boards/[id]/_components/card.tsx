@@ -28,7 +28,7 @@ export function ColumnCard({
 			className="hover:cursor-grab active:cursor-grabbing -mt-[16px] first:-mt-[0px]"
 			key={item.id}
 			attributes={{
-				onDragOver: (event: DragEvent<HTMLDivElement>) => {
+				onDragOver: (event: DragEvent<HTMLLIElement>) => {
 					if (event.dataTransfer.types.includes(CONTENT_TYPES.card)) {
 						event.stopPropagation();
 						event.preventDefault();
@@ -37,11 +37,11 @@ export function ColumnCard({
 						setAcceptDrop(event.clientY <= midpoint ? "top" : "bottom");
 					}
 				},
-				onDragLeave: (event: DragEvent<HTMLElement>) => {
+				onDragLeave: (event: DragEvent<HTMLLIElement>) => {
 					event.stopPropagation();
 					setAcceptDrop("none");
 				},
-				onDrop: (event: DragEvent<HTMLDivElement>) => {
+				onDrop: (event: DragEvent<HTMLLIElement>) => {
 					let droppedOrder = acceptDrop === "top" ? previousOrder : nextOrder;
 					draggableProvider.order = `${(droppedOrder + item.order) / 2}`;
 					setAcceptDrop("none");
